@@ -7,7 +7,8 @@ function s = ismatch(x, y)
 if isempty(x) || isempty(y)
   s = false;
 elseif ischar(x) && ischar(y)
-  y = sprintf('%s%s%s', '^', regexptranslate('wildcard',y), '$');
+  y = sprintf('%s%s%s', regexptranslate('wildcard',y)); % jp modified
+%   y = sprintf('%s%s%s', '^', regexptranslate('wildcard',y), '$'); % original jp
   s = ~isempty(regexp(x, y, 'once'));
 elseif isnumeric(x) && isnumeric(y)
   s = ismember(x, y);
