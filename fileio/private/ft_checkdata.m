@@ -994,10 +994,11 @@ elseif strcmp(current, 'fourier') && strcmp(desired, 'fullfast')
   if contains(data.dimord, 'time'), ntim = length(data.time); else ntim = 1; end
   
   data.fourierspctrm = reshape(data.fourierspctrm, [nrpt nchn nfrq*ntim]);
-  data.fourierspctrm(~isfinite(data.fourierspctrm)) = 0;
+  %data.fourierspctrm(~isfinite(data.fourierspctrm)) = 0;
   crsspctrm = complex(zeros(nchn,nchn,nfrq*ntim));
   for k = 1:nfrq*ntim
     tmp = transpose(data.fourierspctrm(:,:,k));
+    tmp(~isfinite(tmp)) = 0;
     n   = sum(tmp~=0,2);
     crsspctrm(:,:,k) = tmp*tmp'./n(1);
   end
@@ -1144,7 +1145,7 @@ elseif strcmp(current, 'sparse') && strcmp(desired, 'full')
   % remove obsolete fields
   data = removefields(data, {'powspctrm', 'labelcmb', 'dof'});
   
-  fn = fieldnames(data);
+  fn = setdiff(fieldnames(data), {'time' 'freq' 'dimord', 'label', 'cfg'});
   for ii=1:numel(fn)
     if numel(data.(fn{ii})) == nrpt*ncmb*nfrq*ntim
       if nrpt==1
@@ -1212,7 +1213,7 @@ elseif strcmp(current, 'sparse') && strcmp(desired, 'fullfast')
   
   complete = all(cmbindx(:)~=0);
   
-  fn = fieldnames(data);
+  fn = setdiff(fieldnames(data), {'time' 'freq' 'dimord' 'label' 'cfg'});
   for ii=1:numel(fn)
     if numel(data.(fn{ii})) == nrpt*ncmb*nfrq*ntim
       if nrpt==1
