@@ -118,6 +118,8 @@ function [hdr] = ft_read_header(filename, varargin)
 
 % TODO channel renaming should be made a general option (see bham_bdf)
 
+% test sync
+
 persistent cacheheader        % for caching the full header
 persistent cachechunk         % for caching the res4 chunk when doing realtime analysis on the CTF scanner
 persistent db_blob            % for fcdc_mysql
