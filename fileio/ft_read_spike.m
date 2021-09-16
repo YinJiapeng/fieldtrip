@@ -75,7 +75,13 @@ switch spikeformat
 
   case 'matlab'
     % plain MATLAB file with a single variable in it
-    load(filename, 'spike');
+    
+    sp = load(filename);
+    spike.label = sp.label;
+    spike.timestamp = sp.timestamp;
+    spike.waveform = sp.waveform;
+%     spike.unit = {};
+    spike.hdr = sp.header;           
 
   case 'mclust_t'
     fp = fopen(filename, 'rb', 'ieee-le');

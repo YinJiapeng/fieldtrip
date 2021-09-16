@@ -101,7 +101,7 @@ function [data] = ft_preprocessing(cfg, data)
 % Preprocessing options that you should only use for EEG data are
 %   cfg.reref         = 'no' or 'yes' (default = 'no')
 %   cfg.refchannel    = cell-array with new EEG reference channel(s), this can be 'all' for a common average reference
-%   cfg.refmethod     = 'avg', 'median', 'rest', 'bipolar' or 'laplace' (default = 'avg')
+%   cfg.refmethod     = '', 'median', 'rest', 'bipolar' or 'laplace' (default = 'avg')
 %   cfg.groupchans    = 'yes' or 'no', should channels be rereferenced in separate groups for bipolar and laplace methods,
 %                       this requires channnels to be named using an alphanumeric code, where letters represent the group
 %                       and numbers represent the order of the channel whithin its group (default = 'no')

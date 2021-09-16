@@ -118,7 +118,6 @@ function [hdr] = ft_read_header(filename, varargin)
 
 % TODO channel renaming should be made a general option (see bham_bdf)
 
-% test sync
 
 persistent cacheheader        % for caching the full header
 persistent cachechunk         % for caching the res4 chunk when doing realtime analysis on the CTF scanner
@@ -334,6 +333,11 @@ hdr = [];
 % please maintain this list in alphabetical order
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 switch headerformat
+    case 'matlab' % jp modified
+    orig            = load(datafile);
+    hdr             = orig.header.hdr_fieldtrip_fp;
+    
+    hdr.orig        = orig;    
   
   case '4d'
     orig            = read_4d_hdr(datafile);
