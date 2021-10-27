@@ -272,7 +272,7 @@ elseif strcmp(cfg.trlunit, 'samples')
     fn = setdiff(fn, {'label', 'cfg', 'dimord', 'time', 'trial', 'trialtime'});
     fn = fn(~endsWith(fn, 'dimord'));
     for i=1:numel(fn)
-        getdimord(spike, fn{i})
+        getdimord(spike, fn{i});
       switch getdimord(spike, fn{i})
         case '{chan}_spike'
           ft_info('making selection in %s', fn{i});

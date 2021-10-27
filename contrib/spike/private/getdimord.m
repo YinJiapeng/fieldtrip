@@ -731,7 +731,7 @@ if ~exist('dimord', 'var')
   % if it does, it might help in diagnosis to have a very informative warning message
   % since there have been problems with trials not being selected correctly due to the warning going unnoticed
   % it is better to throw an error than a warning
-  warning_dimord_could_not_be_determined(field, data);
+%   warning_dimord_could_not_be_determined(field, data); % jp
   
   dimtok(cellfun(@isempty, dimtok)) = {'unknown'};
   if all(~cellfun(@isempty, dimtok))
@@ -781,7 +781,7 @@ else
 end
 
 msg = sprintf('%s\n\n%s', msg, content);
-ft_warning('FieldTrip:getdimord:warning_dimord_could_not_be_determined', msg);
+ft_warning('FieldTrip:getdimord:warning_dimord_could_not_be_determined', msg); 
 end % function warning_dimord_could_not_be_determined
 
 
